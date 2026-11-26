@@ -1,28 +1,37 @@
-# A counterexample to Schur log-concavity of weighted bond posets
+# A Counterexample to Schur Log-Concavity of Weighted Bond Posets
 
-The **18-vertex star $K_{1,17}$** refutes González D’León and Wachs’s Conjecture 7.3. If $f_d$ is the degree-$d$ component of $\Psi_{K_{1,m}}$, then
+The **18-vertex star $K_{1,17}$** refutes Conjecture 7.3 of González D'León and Wachs ([arXiv:2608.08692v2](https://arxiv.org/abs/2608.08692v2)), which conjectured that the weighted bond-poset symmetric function $\Psi_G$ is Schur-log-concave for every finite simple graph $G$.
 
-$$
-[s_{(15,1)}]\bigl(f_8^2-f_7f_9\bigr)
-=509\binom{m}{8}^{2}-637\binom{m}{7}\binom{m}{9}.
-$$
-
-At $m=17$ this is $-354{,}585{,}660$. The coefficient is negative for every $m\geq17$. There is also a degree-three counterexample family.
+Let $f_d$ denote the degree-$d$ homogeneous component of $\Psi_{K_{1,m}}$. Then:
 
 $$
-[s_{(3,3)}]\bigl(f_3^2-f_2 f_4\bigr)
-=37\binom{m}{3}^{2}-50\binom{m}{2}\binom{m}{4}
-=\frac{m^2(m-1)^2(m-2)(77-m)}{72}.
+[s_{(15,1)}]\bigl(f_8^2 - f_7 f_9\bigr)
+= 509\binom{m}{8}^{2} - 637\binom{m}{7}\binom{m}{9}.
 $$
 
-At $m=78$ this coefficient is $-38{,}076{,}038$. It is negative for every integer $m\geq78$. [Original conjecture](https://arxiv.org/html/2608.08692v2#S7)
+At $m = 17$ this equals $-354{,}585{,}660$, and it remains strictly negative for every integer $m \geq 17$.
 
-[Proof note](proof.pdf) · [LaTeX source](proof.tex) · [X draft](POST-DRAFT.md)
+A degree-three failure also occurs for larger stars:
 
-## Replay the arithmetic
+$$
+[s_{(3,3)}]\bigl(f_3^2 - f_2 f_4\bigr)
+= 37\binom{m}{3}^{2} - 50\binom{m}{2}\binom{m}{4}
+= \frac{m^2(m-1)^2(m-2)(77-m)}{72}.
+$$
+
+At $m = 78$ this equals $-38{,}076{,}038$, and it remains strictly negative for every integer $m \geq 78$.
+
+## Documents
+
+- [Proof note (PDF)](proof.pdf)
+- [LaTeX source](proof.tex)
+
+## Verification
+
+Run the exact integer verification script (Python 3 standard library only):
 
 ```sh
-python verify.py
+python3 verify.py
 ```
 
-The verifier uses only the Python standard library. It computes the two-variable Möbius polynomials, checks them independently from two-weight intervals, and reproduces both negative coefficients.
+The script computes the two-variable Möbius polynomials of $K_{1,j}$ ($0 \leq j \leq 9$) via the Möbius recurrence, cross-checks them independently by direct interval summation over the two-weighted bond poset, and verifies all closed-form identities and negative Schur coefficients.

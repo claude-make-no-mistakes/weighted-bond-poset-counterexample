@@ -1,47 +1,88 @@
-\documentclass[10pt]{article}
-\usepackage[letterpaper,margin=0.9in]{geometry}
-\usepackage{amsmath,amsthm}
-\usepackage[hidelinks]{hyperref}
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
 
 \newtheorem{theorem}{Theorem}
 \newcommand{\coef}[2]{[#1]\!\left(#2\right)}
 
-\title{A counterexample to Schur log-concavity\\of weighted bond posets}
+\title{A Counterexample to Schur Log-Concavity\\of Weighted Bond Posets}
 \author{}
 \date{}
 
 \begin{document}
 \maketitle
-\vspace{-1.8em}
+\vspace{-2.5em}
+
+\begin{abstract}
+Gonz\'alez D'Le\'on and Wachs conjectured that the weighted bond-poset symmetric function $\Psi_G$ of every finite simple graph $G$ is Schur-log-concave, meaning that $f_d^2 - f_{d-1}f_{d+1}$ is Schur-positive for every homogeneous degree~$d$. We show that this conjecture fails for star graphs $K_{1,m}$: at degree $d=8$ the coefficient of $s_{(15,1)}$ in $f_8^2-f_7f_9$ is negative for every $m \geq 17$ (starting at $-354{,}585{,}660$ for the $18$-vertex star $K_{1,17}$), and at degree $d=3$ the coefficient of $s_{(3,3)}$ in $f_3^2-f_2f_4$ is negative for every $m \geq 78$.
+\end{abstract}
 
 \begin{theorem}
-For the star $K_{1,m}$ with $m$ leaves, let $f_d$ be the degree-$d$ component of the weighted bond-poset symmetric function $\Psi_{K_{1,m}}$. Then
+For the star $K_{1,m}$ with $m$ leaves, let $f_d$ be the degree-$d$ homogeneous component of the weighted bond-poset symmetric function $\Psi_{K_{1,m}}$. Then
 \begin{align*}
 \coef{s_{(15,1)}}{f_8^2-f_7f_9}&=509\binom{m}{8}^{\!2}-637\binom{m}{7}\binom{m}{9},\\
 \coef{s_{(3,3)}}{f_3^2-f_2f_4}&=37\binom{m}{3}^{\!2}-50\binom{m}{2}\binom{m}{4}.
 \end{align*}
-The first is $-354{,}585{,}660$ at $m=17$ and stays negative for $m\geq17$. The second is $-38{,}076{,}038$ at $m=78$ and stays negative for $m\geq78$. In particular, the 18-vertex star refutes Conjecture~7.3 of Gonz\'alez D'Le\'on and Wachs~\cite{bond}.
+The first coefficient equals $-354{,}585{,}660$ at $m=17$ and is strictly negative for all $m\geq 17$. The second equals $-38{,}076{,}038$ at $m=78$ and is strictly negative for all $m\geq 78$. In particular, the $18$-vertex star $K_{1,17}$ refutes Conjecture~7.3 of Gonz\'alez D'Le\'on and Wachs~\cite{bond}.
 \end{theorem}
 
 \begin{proof}
-Write $M_j$ for the M\"obius symmetric function of $K_{1,j}$ and set $M_0=1$. A connected partition of a star is determined by the leaves in the block containing its center. Every other block is a singleton. The connected-partition formula~\cite[Eq.~(7.1)]{bond} therefore gives $f_d=\binom{m}{d}M_d$. Applying the M\"obius recurrence~\cite[Eq.~(5.3)]{bond} to the star on $j$ leaves gives
+Write $M_j$ for the M\"obius symmetric function of $K_{1,j}$ and set $M_0=1$. A connected partition of $K_{1,m}$ is uniquely determined by the subset of leaves in the block containing the center; every remaining block is a singleton, which contributes a factor $M_0 = 1$. Since $M_d$ is homogeneous of degree~$d$, the connected-partition expansion~\cite[Eq.~(7.1)]{bond} yields
 \[
-M_j=-\sum_{i=0}^{j-1}\binom{j}{i}h_{j-i}M_i \qquad(j\geq1).
+f_d = \binom{m}{d} M_d.
 \]
-Set all variables other than $x,y$ to zero. Then $h_j(x,y)=\sum_{i=0}^j x^{j-i}y^i$. At $x=1$, induction gives
+Applying the M\"obius recurrence~\cite[Eq.~(5.3)]{bond} to the star $K_{1,j}$ gives
 \[
-M_j(1,y)\equiv(-1)^j\bigl(1+(2^j-1)y\bigr)\pmod{y^2}.
+M_j = -\sum_{i=0}^{j-1} \binom{j}{i} h_{j-i} M_i \qquad (j \geq 1),
 \]
-Indeed, for $i<j$ the factor $h_{j-i}(1,y)$ is $1+y$ modulo $y^2$. The constant and linear coefficients of the recurrence are therefore $-\sum_{i<j}\binom ji(-1)^i=(-1)^j$ and $-\sum_{i<j}\binom ji(-2)^i=(-2)^j-(-1)^j$. For $F$ of degree $2d$, $[s_{(2d-1,1)}]F=[y]F(1,y)-[1]F(1,y)$. The one-row Schur function contributes to both powers, the shape $(2d-1,1)$ contributes only to $y$, and all other shapes contribute to neither. Applied to $M_d^2$ and $M_{d-1}M_{d+1}$, this gives $2^{d+1}-3$ and $5\cdot 2^{d-1}-3$, respectively. Set $d=8$. Dividing the coefficient by $\binom m8^2$ gives $(8701-515m)/(9(m-7))$ for $m\geq8$, which is negative for $m\geq17$.
+where $h_k$ denotes the $k$-th complete homogeneous symmetric function.
 
-For the degree-three identity, the same recurrence gives
+Specialize all variables other than $x,y$ to zero, so that $h_k(x,y) = \sum_{r=0}^{k} x^{k-r}y^r$. Setting $x=1$, we claim by induction on $j \geq 0$ that
+\[
+M_j(1,y) \equiv (-1)^j \bigl(1 + (2^j - 1)y\bigr) \pmod{y^2}.
+\]
+The base case $j=0$ is immediate since $M_0 = 1$. For $j \geq 1$ and every $0 \leq i < j$, we have $h_{j-i}(1,y) \equiv 1+y \pmod{y^2}$, hence
+\[
+h_{j-i}(1,y) M_i(1,y) \equiv (-1)^i(1 + 2^i y) \pmod{y^2}.
+\]
+Summing over $0 \leq i < j$ yields the constant term $-\sum_{i=0}^{j-1}\binom{j}{i}(-1)^i = (-1)^j$ and the linear coefficient $-\sum_{i=0}^{j-1}\binom{j}{i}(-2)^i = (-2)^j - (-1)^j = (-1)^j(2^j - 1)$, completing the induction.
+
+For any homogeneous symmetric function $F$ of degree $2d$ ($d \geq 1$), specializing to two variables $(x,y)$ annihilates all Schur functions $s_\lambda$ with more than two parts, leaving only shapes $(2d-r, r)$ with $0 \leq r \leq d$. Evaluating at $x=1$ gives $s_{(2d)}(1,y) = 1 + y + \dots + y^{2d}$, $s_{(2d-1,1)}(1,y) = y(1 + y + \dots + y^{2d-2})$, and $s_{(2d-r,r)}(1,y) \equiv 0 \pmod{y^2}$ for $r \geq 2$. Therefore
+\[
+\coef{s_{(2d-1,1)}}{F} = [y]F(1,y) - [1]F(1,y).
+\]
+Applying this to $M_d^2$ and $M_{d-1}M_{d+1}$ (noting $(-1)^{2d}=1$) gives
 \begin{align*}
-M_2(x,y)&=x^2+3xy+y^2,\\
-M_3(x,y)&=-(x^3+7x^2y+7xy^2+y^3),\\
-M_4(x,y)&=x^4+15x^3y+33x^2y^2+15xy^3+y^4.
+\coef{s_{(2d-1,1)}}{M_d^2} &= 2(2^d - 1) - 1 = 2^{d+1} - 3,\\
+\coef{s_{(2d-1,1)}}{M_{d-1}M_{d+1}} &= (2^{d-1} + 2^{d+1} - 2) - 1 = 5 \cdot 2^{d-1} - 3.
 \end{align*}
-For $F$ of degree six, $[s_{(3,3)}]F=[x^3y^3]F(x,y)-[x^4y^2]F(x,y)$. In two variables, $(6)$, $(5,1)$ and $(4,2)$ contribute equally to both monomials, and $(3,3)$ contributes only to the first. The two monomial coefficients are $100,63$ in $M_3^2$ and $129,79$ in $M_2M_4$. Thus the difference is $m^2(m-1)^2(m-2)(77-m)/72$, which is negative for $m\geq78$.
+Setting $d=8$ gives $509$ and $637$, respectively, establishing the first formula. For $m \geq 8$, dividing by $\binom{m}{8}^2 > 0$ yields
+\[
+509 - 637\,\frac{8(m-8)}{9(m-7)} = \frac{8701 - 515m}{9(m-7)},
+\]
+which is strictly negative for every integer $m \geq 17$ (since $8701/515 \approx 16.895$), and equals $-354{,}585{,}660$ at $m=17$.
+
+For the degree-three identity, expanding the same recurrence in two variables yields
+\begin{align*}
+M_2(x,y) &= x^2 + 3xy + y^2,\\
+M_3(x,y) &= -(x^3 + 7x^2y + 7xy^2 + y^3),\\
+M_4(x,y) &= x^4 + 15x^3y + 33x^2y^2 + 15xy^3 + y^4.
+\end{align*}
+For a homogeneous symmetric function $F$ of degree~$6$, the two-variable Schur functions $s_{(6)}$, $s_{(5,1)}$, and $s_{(4,2)}$ each have coefficient~$1$ on both $x^3y^3$ and $x^4y^2$, whereas $s_{(3,3)}(x,y) = x^3y^3$. Hence
+\[
+\coef{s_{(3,3)}}{F} = [x^3y^3]F(x,y) - [x^4y^2]F(x,y).
+\]
+Direct multiplication gives $([x^3y^3], [x^4y^2]) = (100, 63)$ for $M_3^2$ and $(129, 79)$ for $M_2M_4$, yielding differences $37$ and $50$, respectively. Thus
+\[
+\coef{s_{(3,3)}}{f_3^2 - f_2f_4}
+= 37\binom{m}{3}^{\!2} - 50\binom{m}{2}\binom{m}{4}
+= \frac{m^2(m-1)^2(m-2)(77-m)}{72},
+\]
+which vanishes at $m=77$, equals $-38{,}076{,}038$ at $m=78$, and is strictly negative for all $m \geq 78$.
 \end{proof}
 
 \begin{thebibliography}{1}
