@@ -1,0 +1,53 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.9in]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\coef}[2]{[#1]\!\left(#2\right)}
+
+\title{A counterexample to Schur log-concavity\\of weighted bond posets}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-1.8em}
+
+\begin{theorem}
+For the star $K_{1,m}$ with $m$ leaves, let $f_d$ be the degree-$d$ component of the weighted bond-poset symmetric function $\Psi_{K_{1,m}}$. Then
+\begin{align*}
+\coef{s_{(15,1)}}{f_8^2-f_7f_9}&=509\binom{m}{8}^{\!2}-637\binom{m}{7}\binom{m}{9},\\
+\coef{s_{(3,3)}}{f_3^2-f_2f_4}&=37\binom{m}{3}^{\!2}-50\binom{m}{2}\binom{m}{4}.
+\end{align*}
+The first is $-354{,}585{,}660$ at $m=17$ and stays negative for $m\geq17$. The second is $-38{,}076{,}038$ at $m=78$ and stays negative for $m\geq78$. In particular, the 18-vertex star refutes Conjecture~7.3 of Gonz\'alez D'Le\'on and Wachs~\cite{bond}.
+\end{theorem}
+
+\begin{proof}
+Write $M_j$ for the M\"obius symmetric function of $K_{1,j}$ and set $M_0=1$. A connected partition of a star is determined by the leaves in the block containing its center. Every other block is a singleton. The connected-partition formula~\cite[Eq.~(7.1)]{bond} therefore gives $f_d=\binom{m}{d}M_d$. Applying the M\"obius recurrence~\cite[Eq.~(5.3)]{bond} to the star on $j$ leaves gives
+\[
+M_j=-\sum_{i=0}^{j-1}\binom{j}{i}h_{j-i}M_i \qquad(j\geq1).
+\]
+Set all variables other than $x,y$ to zero. Then $h_j(x,y)=\sum_{i=0}^j x^{j-i}y^i$. At $x=1$, induction gives
+\[
+M_j(1,y)\equiv(-1)^j\bigl(1+(2^j-1)y\bigr)\pmod{y^2}.
+\]
+Indeed, for $i<j$ the factor $h_{j-i}(1,y)$ is $1+y$ modulo $y^2$. The constant and linear coefficients of the recurrence are therefore $-\sum_{i<j}\binom ji(-1)^i=(-1)^j$ and $-\sum_{i<j}\binom ji(-2)^i=(-2)^j-(-1)^j$. For $F$ of degree $2d$, $[s_{(2d-1,1)}]F=[y]F(1,y)-[1]F(1,y)$. The one-row Schur function contributes to both powers, the shape $(2d-1,1)$ contributes only to $y$, and all other shapes contribute to neither. Applied to $M_d^2$ and $M_{d-1}M_{d+1}$, this gives $2^{d+1}-3$ and $5\cdot 2^{d-1}-3$, respectively. Set $d=8$. Dividing the coefficient by $\binom m8^2$ gives $(8701-515m)/(9(m-7))$ for $m\geq8$, which is negative for $m\geq17$.
+
+For the degree-three identity, the same recurrence gives
+\begin{align*}
+M_2(x,y)&=x^2+3xy+y^2,\\
+M_3(x,y)&=-(x^3+7x^2y+7xy^2+y^3),\\
+M_4(x,y)&=x^4+15x^3y+33x^2y^2+15xy^3+y^4.
+\end{align*}
+For $F$ of degree six, $[s_{(3,3)}]F=[x^3y^3]F(x,y)-[x^4y^2]F(x,y)$. In two variables, $(6)$, $(5,1)$ and $(4,2)$ contribute equally to both monomials, and $(3,3)$ contributes only to the first. The two monomial coefficients are $100,63$ in $M_3^2$ and $129,79$ in $M_2M_4$. Thus the difference is $m^2(m-1)^2(m-2)(77-m)/72$, which is negative for $m\geq78$.
+\end{proof}
+
+\begin{thebibliography}{1}
+\bibitem{bond}
+R.~S. Gonz\'alez D'Le\'on and M.~L. Wachs.
+\newblock Weighted bond posets and a new chromatic symmetric function.
+\newblock \href{https://arxiv.org/abs/2608.08692v2}{arXiv:2608.08692v2}, 2026.
+\end{thebibliography}
+\end{document}
